@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Touch 💋</title>
+  <style>
+    body {
+      background-color: #fff0f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: "Poppins", sans-serif;
+      color: #d6336c;
+    }
+
+    .lips {
+      font-size: 120px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .lips:active {
+      transform: scale(1.2);
+    }
+
+    .message {
+      display: none;
+      margin-top: 30px;
+      font-size: 20px;
+      text-align: center;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .share-btn {
+      display: none;
+      margin-top: 15px;
+      background-color: #25d366;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .share-btn:hover {
+      background-color: #1ea955;
+    }
+  </style>
+</head>
+<body>
+  <div class="lips" id="lips">💋</div>
+  <div class="message" id="message">"You are my favorite feeling 💖"</div>
+  <button class="share-btn" id="shareBtn">Share on WhatsApp 💬</button>
+
+  <script>
+    const lips = document.getElementById("lips");
+    const message = document.getElementById("message");
+    const shareBtn = document.getElementById("shareBtn");
+    let pressTimer;
+
+    lips.addEventListener("mousedown", () => {
+      pressTimer = setTimeout(() => {
+        message.style.display = "block";
+        shareBtn.style.display = "inline-block";
+      }, 5000); // 5 seconds hold
+    });
+
+    lips.addEventListener("mouseup", () => {
+      clearTimeout(pressTimer);
+    });
+
+    lips.addEventListener("touchstart", () => {
+      pressTimer = setTimeout(() => {
+        message.style.display = "block";
+        shareBtn.style.display = "inline-block";
+      }, 5000);
+    });
+
+    lips.addEventListener("touchend", () => {
+      clearTimeout(pressTimer);
+    });
+
+    shareBtn.addEventListener("click", () => {
+      const text = encodeURIComponent("You are my favorite feeling 💖 - from Love Touch 💋");
+      const url = `https://wa.me/?text=${text}`;
+      window.open(url, "_blank");
+    });
+  </script>
+</body>
+</html>
