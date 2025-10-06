@@ -14,6 +14,7 @@
       height: 100vh;
       font-family: "Poppins", sans-serif;
       color: #d6336c;
+      user-select: none; /* text copy বন্ধ */
     }
 
     .lips {
@@ -65,28 +66,15 @@
     const lips = document.getElementById("lips");
     const message = document.getElementById("message");
     const shareBtn = document.getElementById("shareBtn");
-    let pressTimer;
 
-    lips.addEventListener("mousedown", () => {
-      pressTimer = setTimeout(() => {
-        message.style.display = "block";
-        shareBtn.style.display = "inline-block";
-      }, 5000); // 5 seconds hold
-    });
-
-    lips.addEventListener("mouseup", () => {
-      clearTimeout(pressTimer);
+    lips.addEventListener("click", () => {
+      message.style.display = "block";
+      shareBtn.style.display = "inline-block";
     });
 
     lips.addEventListener("touchstart", () => {
-      pressTimer = setTimeout(() => {
-        message.style.display = "block";
-        shareBtn.style.display = "inline-block";
-      }, 5000);
-    });
-
-    lips.addEventListener("touchend", () => {
-      clearTimeout(pressTimer);
+      message.style.display = "block";
+      shareBtn.style.display = "inline-block";
     });
 
     shareBtn.addEventListener("click", () => {
