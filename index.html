@@ -14,7 +14,7 @@
       height: 100vh;
       font-family: "Poppins", sans-serif;
       color: #d6336c;
-      user-select: none; /* text copy বন্ধ */
+      user-select: none;
     }
 
     .lips {
@@ -30,7 +30,7 @@
     .message {
       display: none;
       margin-top: 30px;
-      font-size: 20px;
+      font-size: 22px;
       text-align: center;
       animation: fadeIn 1s ease forwards;
     }
@@ -59,7 +59,7 @@
 </head>
 <body>
   <div class="lips" id="lips">💋</div>
-  <div class="message" id="message">"You are my favorite feeling 💖"</div>
+  <div class="message" id="message"></div>
   <button class="share-btn" id="shareBtn">Share on WhatsApp 💬</button>
 
   <script>
@@ -67,18 +67,36 @@
     const message = document.getElementById("message");
     const shareBtn = document.getElementById("shareBtn");
 
-    lips.addEventListener("click", () => {
-      message.style.display = "block";
-      shareBtn.style.display = "inline-block";
-    });
+    // 11 romantic messages 💖
+    const messages = [
+      "You are my favorite feeling 💖",
+      "My heart smiles whenever I think of you 😊",
+      "You’re my today and all of my tomorrows 💕",
+      "Every moment with you feels like magic ✨",
+      "You make my world brighter 🌍💫",
+      "I still get butterflies when I see your name 💌",
+      "Your love is my most beautiful addiction 💞",
+      "You are the reason behind my every smile 😊",
+      "Falling in love with you again and again 💘",
+      "I love you more than words can ever say ❤️",
+      "You’re not my number one, you’re my only one 💍"
+    ];
 
-    lips.addEventListener("touchstart", () => {
+    let currentMessage = "";
+
+    function showRandomMessage() {
+      const randomIndex = Math.floor(Math.random() * messages.length);
+      currentMessage = messages[randomIndex];
+      message.textContent = `"${currentMessage}"`;
       message.style.display = "block";
       shareBtn.style.display = "inline-block";
-    });
+    }
+
+    lips.addEventListener("click", showRandomMessage);
+    lips.addEventListener("touchstart", showRandomMessage);
 
     shareBtn.addEventListener("click", () => {
-      const text = encodeURIComponent("You are my favorite feeling 💖 - from Love Touch 💋");
+      const text = encodeURIComponent(`${currentMessage} - from Love Touch 💋`);
       const url = `https://wa.me/?text=${text}`;
       window.open(url, "_blank");
     });
